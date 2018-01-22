@@ -18,6 +18,9 @@ const Tabs = TabNavigator({
       showIcon: true,
       showLabel: false,
       activeTintColor: '#000',
+      style: {
+        backgroundColor: '#1647E9',
+      },
       indicatorStyle: {
         backgroundColor: '#FFF'
       }

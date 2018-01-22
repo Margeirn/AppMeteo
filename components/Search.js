@@ -32,11 +32,11 @@ class Search extends React.Component {
             <View style={style.view}>
                 <TextInput
                     underlineColorAndroid='transparent'
-                    style={{ width: 150, height: 40, borderColor: 'grey', borderWidth: 1, marginBottom: 30 }}
+                    style={{ width: 150, height: 40, borderColor: 'grey', paddingLeft: 20, borderWidth: 1, marginBottom: 30 }}
                     value={this.state.city}
                     onChangeText={(text) => this.setCity(text)}
                 />
-                <Button onPress={() => this.submit() } title="Rechercher" />
+                <Button color={'#1647E9'} onPress={() => this.submit() } title="Rechercher" />
             </View>
         )
     }
@@ -58,7 +58,6 @@ const style = StyleSheet.create({
     headerTitle: {
         color: '#FFF',
     }
-
 })
 
 const navigationOptions = {
@@ -67,12 +66,13 @@ const navigationOptions = {
 }
 
 export default StackNavigator({
+    Result: {
+        screen: List,
+        navigationOptions
+    },
     Search: {
         screen: Search,
         navigationOptions
     },
-    Result: {
-        screen: List,
-        navigationOptions
-    }
+    
 })
