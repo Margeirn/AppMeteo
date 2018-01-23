@@ -21,7 +21,7 @@ export default class Row extends React.Component {
     date () {
         let date = moment(this.props.day.dt_txt).format('DD/MM')
         return (
-            <Text>{ date }</Text>
+            <Text style={{ fontSize: 16 }} >{ date }</Text>
         )
     }
 
@@ -32,7 +32,7 @@ export default class Row extends React.Component {
         )
     }
     
-    icon (size = 50) {
+    icon (size) {
         const type = this.props.day.weather[0].main.toLowerCase()
         let image
         switch (type) {
@@ -46,22 +46,31 @@ export default class Row extends React.Component {
                 image = require('./icons/clear.png')
                 break;
             default: 
-                break;
                 image = require('./icons/sun.png')
+                break;
         }
         return (
-            <Image source={image} style={{width: size, height: size}} />
+            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >  
+                <Image source={image} style={{ width: size, height: size}} />
+            </View>
         )
     }
 
     render () {
+
         return (
             <View style={style.view} >
-                <Text style={style.white} >{this.day()} {this.date()} {this.heure()}H</Text>
-                { this.icon()}
-                <Text style={style.temp} >{this.props.day.main.temp}°C</Text>
+                <View style={{flex: 1, marginLeft: 20}} >
+                    <Text style={style.white} >{this.day()} {this.date()}</Text>
+                    <Text style={[style.white, {marginLeft: 10}]} >{this.heure()}H</Text>
+                </View>
+                {this.icon(50)}
+                <View  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10}}>
+                    <Text style={style.temp} >{Math.round(this.props.day.main.temp)}°C  </Text>
+                </View>
             </View>
         )
+
     }
 }
 
@@ -71,7 +80,7 @@ const style = StyleSheet.create({
     },
     bold: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 24,
     },
     view: {
         backgroundColor: '#E82A37',
@@ -82,11 +91,11 @@ const style = StyleSheet.create({
         paddingVertical: 10,
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'center'
     },
     temp: {
         color: '#FFF',
         fontWeight: 'bold',
-        fontSize: 22,
+        fontSize: 25,
     }
 })
