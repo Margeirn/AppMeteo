@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, TextInput, StyleSheet, Image, Button} from 'react-native'
+import { TextInput, StyleSheet, Image, Text } from 'react-native'
+import { View, Button, Container, Item, Input } from 'native-base'
 import { StackNavigator } from 'react-navigation' 
 import List from './List'
 
@@ -8,12 +9,12 @@ class Search extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            city: 'Douai'
+            city: 'Douai',
         }
     }
 
     static navigationOptions = {
-        title: 'Rechercher une ville',
+        title: 'Rechercher une ville           ',
         tabBarIcon: () => {
             return <Image style={{width: 20, height: 20}} source={require('../img/search.png')}/>
         }
@@ -29,15 +30,21 @@ class Search extends React.Component {
 
     render() {
         return (
-            <View style={style.view}>
-                <TextInput
-                    underlineColorAndroid='transparent'
-                    style={{ width: 150, height: 40, borderColor: 'grey', paddingLeft: 20, borderWidth: 1, marginBottom: 30 }}
-                    value={this.state.city}
-                    onChangeText={(text) => this.setCity(text)}
-                />
-                <Button color={'#1647E9'} onPress={() => this.submit() } title="Rechercher" />
+            <Container style={{ backgroundColor: '#78909C' }} >
+                <View style={style.view}>
+                <Item style={{borderBottomWidth: 0, marginBottom: 30 }} >
+                    <Input noBorder style={{ backgroundColor: '#fff', borderRadius: 7}} placeholder='Entre une ville' 
+                        value={this.state.city}
+                        onChangeText={(text) => this.setCity(text)}
+                    />
+                </Item>
+                <View>
+                    <Button style={{ borderRadius: 7, height:50, backgroundColor: '#455A64' }} onPress={() => this.submit() }>
+                        <Text style={{ margin: 30, color: 'white', fontSize: 25 }} >Rechercher</Text>
+                    </Button>
+                </View>
             </View>
+            </Container>
         )
     }
 }
@@ -45,15 +52,16 @@ class Search extends React.Component {
 const style = StyleSheet.create({
     view: {
         margin: 50,
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     title: {
         fontSize: 22,
         marginBottom: 20
     },
     header: {
-        backgroundColor: '#1647E9'
+        backgroundColor: '#90A4AE',
     },
     headerTitle: {
         color: '#FFF',
@@ -66,13 +74,12 @@ const navigationOptions = {
 }
 
 export default StackNavigator({
-    Result: {
-        screen: List,
-        navigationOptions
-    },
     Search: {
         screen: Search,
         navigationOptions
     },
-    
+    Result: {
+        screen: List,
+        navigationOptions
+    },
 })

@@ -57,20 +57,36 @@ export default class Row extends React.Component {
     }
 
     render () {
-
-        return (
-            <View style={style.view} >
-                <View style={{flex: 1, marginLeft: 20}} >
-                    <Text style={style.white} >{this.day()} {this.date()}</Text>
-                    <Text style={[style.white, {marginLeft: 10}]} >{this.heure()}H</Text>
+        
+        if (this.props.index === 0 ) {
+            return (
+                <View style={style.firstView} >
+                    <View style={{flex: 1, marginLeft: 20}} >
+                        <Text style={style.white} >{this.day()} {this.date()}</Text>
+                        <Text style={[style.white, {marginLeft: 10}]} >{this.heure()}H</Text>
+                        <View style={{ marginLeft: 100, marginBottom: 10 }} >
+                            {this.icon(100)}
+                        </View>
+                    </View>
+                    <View  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10}}>
+                        <Text style={style.firstTemp} >{Math.round(this.props.day.main.temp)}°C  </Text>
+                    </View>
                 </View>
-                {this.icon(50)}
-                <View  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10}}>
-                    <Text style={style.temp} >{Math.round(this.props.day.main.temp)}°C  </Text>
+            )
+        } else {
+            return (
+                <View style={style.view} >
+                    <View style={{flex: 1, marginLeft: 20}} >
+                        <Text style={style.white} >{this.day()} {this.date()}</Text>
+                        <Text style={[style.white, {marginLeft: 10}]} >{this.heure()}H</Text>
+                    </View>
+                    {this.icon(50)}
+                    <View  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10}}>
+                        <Text style={style.temp} >{Math.round(this.props.day.main.temp)}°C  </Text>
+                    </View>
                 </View>
-            </View>
-        )
-
+            )
+        } 
     }
 }
 
@@ -83,15 +99,32 @@ const style = StyleSheet.create({
         fontSize: 24,
     },
     view: {
-        backgroundColor: '#E82A37',
+        backgroundColor: '#455A64',
         borderWidth: 0,
         borderBottomWidth: 1,
-        borderBottomColor: '#1647e9',
+        borderBottomColor: '#cfd8dc',
         paddingHorizontal: 20,
         paddingVertical: 10,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center'
+    },
+    firstView: {
+        backgroundColor: '#78909C',
+        borderWidth: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#cfd8dc',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    firstTemp: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 40,
     },
     temp: {
         color: '#FFF',

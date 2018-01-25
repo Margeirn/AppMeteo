@@ -7,7 +7,7 @@ export default class List extends React.Component {
     
     static navigationOptions = ({navigation}) => {
         return {
-            //title: `Météo / ${navigation.state.params.city}`,
+            title: `Météo / ${navigation.state.params.city}                `,
             tabBarIcon: () => {
                 return <Image style={{width: 20, height: 20}} source={require('../img/search.png')}/>
             }
@@ -17,7 +17,7 @@ export default class List extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            city: "Vias", 
+            city: this.props.navigation.state.params.city, 
             report: null,
         }
     }
@@ -39,10 +39,12 @@ export default class List extends React.Component {
             )
         } else {
             const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+            let dss = ds.cloneWithRows(this.state.report.list);
+            
             return (
                 <View>
                     <ListView
-                        dataSource={ds.cloneWithRows(this.state.report.list)}
+                        dataSource={dss}
                         renderRow={(row, j, k) => <WeatherRow day={row} index={parseInt(k, 10)}/>}
                     />
                 </View>
