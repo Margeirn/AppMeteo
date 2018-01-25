@@ -12,25 +12,19 @@ export default class Row extends React.Component {
     }
 
     day () {
-        let day = moment(this.props.day.dt_txt).locale('fr').format('ddd')
+        let day = moment(this.props.day.dt * 1000).locale('fr').format('ddd')
         return (
             <Text style={style.bold} >{ day.toUpperCase() }</Text>
         )
     }
 
     date () {
-        let date = moment(this.props.day.dt_txt).format('DD/MM')
+        let date = moment(this.props.day.dt * 1000).format('DD/MM')
         return (
-            <Text style={{ fontSize: 16 }} >{ date }</Text>
+        <Text style={{ fontSize: 16 }} >{this.day()}{ date }</Text>
         )
     }
 
-    heure () {
-        let heure = moment(this.props.day.dt_txt).format('HH')
-        return (
-            <Text>{ heure }</Text>
-        )
-    }
     
     icon (size) {
         const type = this.props.day.weather[0].main.toLowerCase()
@@ -61,28 +55,30 @@ export default class Row extends React.Component {
         if (this.props.index === 0 ) {
             return (
                 <View style={style.firstView} >
-                    <View style={{flex: 1, marginLeft: 20}} >
-                        <Text style={style.white} >{this.day()} {this.date()}</Text>
-                        <Text style={[style.white, {marginLeft: 10}]} >{this.heure()}H</Text>
-                        <View style={{ marginLeft: 100, marginBottom: 10 }} >
+                    <View style={{flex: 1.5, flexDirection: 'row', marginLeft: 20}} >
+                        <View style={{flex: 1, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center'}}>
+                            <Text style={style.bold} >{moment(this.props.day.dt * 1000).locale('fr').format('ddd').toUpperCase()}</Text> 
+                            <Text style={style.white} >{moment(this.props.day.dt * 1000).format('DD/MM')}</Text>
+                        </View>
+                        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}} >
                             {this.icon(100)}
                         </View>
                     </View>
                     <View  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10}}>
-                        <Text style={style.firstTemp} >{Math.round(this.props.day.main.temp)}°C  </Text>
+                        <Text style={style.firstTemp} >{Math.round(this.props.day.temp.day)}°C  </Text>
                     </View>
                 </View>
             )
         } else {
             return (
                 <View style={style.view} >
-                    <View style={{flex: 1, marginLeft: 20}} >
-                        <Text style={style.white} >{this.day()} {this.date()}</Text>
-                        <Text style={[style.white, {marginLeft: 10}]} >{this.heure()}H</Text>
+                    <View style={{flex: 1, flexDirection: 'row' , marginLeft: 20, alignItems: 'center'}} >
+                        <Text style={style.bold} >{moment(this.props.day.dt * 1000).locale('fr').format('ddd').toUpperCase()}</Text> 
+                        <Text style={style.white} >{moment(this.props.day.dt * 1000).format('DD/MM')}</Text>
                     </View>
                     {this.icon(50)}
                     <View  style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginRight: 10}}>
-                        <Text style={style.temp} >{Math.round(this.props.day.main.temp)}°C  </Text>
+                        <Text style={style.temp} >{Math.round(this.props.day.temp.day)}°C  </Text>
                     </View>
                 </View>
             )
@@ -92,11 +88,13 @@ export default class Row extends React.Component {
 
 const style = StyleSheet.create({
     white: {
-        color: '#fff'
+        color: '#fff',
+        fontSize: 18
     },
     bold: {
         fontWeight: 'bold',
-        fontSize: 24,
+        fontSize: 26,
+        color: '#fff'
     },
     view: {
         backgroundColor: '#455A64',
@@ -107,7 +105,8 @@ const style = StyleSheet.create({
         paddingVertical: 10,
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     firstView: {
         backgroundColor: '#78909C',
