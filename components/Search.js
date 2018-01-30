@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput, StyleSheet, Image, Text } from 'react-native'
+import { StyleSheet, Image, Text } from 'react-native'
 import { View, Button, Container, Item, Input } from 'native-base'
 import { StackNavigator } from 'react-navigation' 
 import List from './List'
@@ -7,7 +7,7 @@ import List from './List'
 class Search extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             city: 'Douai',
         }
@@ -18,7 +18,7 @@ class Search extends React.Component {
         tabBarIcon: () => {
             return <Image style={{width: 20, height: 20}} source={require('../img/search.png')}/>
         }
-    }
+    };
 
     setCity(city) {
         this.setState({ city })
@@ -66,12 +66,12 @@ const style = StyleSheet.create({
     headerTitle: {
         color: '#FFF',
     }
-})
+});
 
 const navigationOptions = {
     headerStyle: style.header,
     headerTitleStyle: style.headerTitle,
-}
+};
 
 export default StackNavigator({
     Search: {

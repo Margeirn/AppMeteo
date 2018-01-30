@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, ActivityIndicator, Image, ListView, View, StyleSheet } from 'react-native'
+import { ActivityIndicator, Image, ListView, View, StyleSheet } from 'react-native'
 import axios from 'axios'
 import WeatherRow from './weather/Row'
 
@@ -12,10 +12,10 @@ export default class List extends React.Component {
                 return <Image style={{width: 20, height: 20}} source={require('../img/search.png')}/>
             }
         }
-    }
+    };
 
     constructor (props) {
-        super(props)
+        super(props);
         this.state = {
             city: this.props.navigation.state.params.city, 
             report: null,
@@ -30,7 +30,7 @@ export default class List extends React.Component {
     }
  
     render () {
-        this.fetchWeather()
+        this.fetchWeather();
         if (this.state.report === null){
             return (
                 <View style={style.view} >
@@ -63,4 +63,4 @@ const style = StyleSheet.create({
         fontSize: 22,
         marginBottom: 20
     }
-})
+});

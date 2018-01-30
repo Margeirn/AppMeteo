@@ -9,17 +9,17 @@ export default class Row extends React.Component {
     static propTypes = {
         day: PropTypes.object,
         rowId: PropTypes.number
-    }
+    };
 
     day () {
-        let day = moment(this.props.day.dt * 1000).locale('fr').format('ddd')
+        let day = moment(this.props.day.dt * 1000).locale('fr').format('ddd');
         return (
             <Text style={style.bold} >{ day.toUpperCase() }</Text>
         )
     }
 
     date () {
-        let date = moment(this.props.day.dt * 1000).format('DD/MM')
+        let date = moment(this.props.day.dt * 1000).format('DD/MM');
         return (
         <Text style={{ fontSize: 16 }} >{this.day()}{ date }</Text>
         )
@@ -27,20 +27,20 @@ export default class Row extends React.Component {
 
     
     icon (size) {
-        const type = this.props.day.weather[0].main.toLowerCase()
-        let image
+        const type = this.props.day.weather[0].main.toLowerCase();
+        let image;
         switch (type) {
             case 'clouds':
-                image = require('./icons/clouds.png')
+                image = require('./icons/clouds.png');
                 break;
             case 'rain':
-                image = require('./icons/rain.png')
+                image = require('./icons/rain.png');
                 break;
             case 'clear':
-                image = require('./icons/clear.png')
+                image = require('./icons/clear.png');
                 break;
             default: 
-                image = require('./icons/sun.png')
+                image = require('./icons/sun.png');
                 break;
         }
         return (
@@ -72,7 +72,7 @@ export default class Row extends React.Component {
         } else {
             return (
                 <View style={style.view} >
-                    <View style={{flex: 1, flexDirection: 'row' , marginLeft: 20, alignItems: 'center'}} >
+                    <View style={{flex: 1, flexDirection: 'row' , marginLeft: 20, alignItems: 'center', justifyContent: 'center'}} >
                         <Text style={style.bold} >{moment(this.props.day.dt * 1000).locale('fr').format('ddd').toUpperCase()}</Text> 
                         <Text style={style.white} >{moment(this.props.day.dt * 1000).format('DD/MM')}</Text>
                     </View>
@@ -130,4 +130,4 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 25,
     }
-})
+});
