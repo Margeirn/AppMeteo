@@ -39,7 +39,7 @@ class Search extends React.Component {
                     />
                 </Item>
                 <View>
-                    <Button style={{ borderRadius: 7, height:50, backgroundColor: '#455A64' }} onPress={() => this.submit() }>
+                    <Button title={''} style={{ borderRadius: 7, height:50, backgroundColor: '#455A64' }} onPress={() => this.submit() }>
                         <Text style={{ margin: 30, color: 'white', fontSize: 25 }} >Rechercher</Text>
                     </Button>
                 </View>
