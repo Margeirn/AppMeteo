@@ -4,7 +4,7 @@ import { View, Button, Container, Item, Input } from 'native-base'
 import { StackNavigator } from 'react-navigation' 
 import List from './List'
 
-class Search extends React.Component {
+export default class Search extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,7 +14,7 @@ class Search extends React.Component {
     }
 
     static navigationOptions = {
-        title: 'Rechercher une ville           ',
+        title: 'Search',
         tabBarIcon: () => {
             return <Image style={{width: 20, height: 20}} source={require('../img/search.png')}/>
         }
@@ -30,7 +30,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <Container style={{ backgroundColor: '#78909C' }} >
+            <Container style={{ backgroundColor: '#d6dee1' }} >
                 <View style={style.view}>
                 <Item style={{borderBottomWidth: 0, marginBottom: 30 }} >
                     <Input noBorder style={{ backgroundColor: '#fff', borderRadius: 7}} placeholder='Entre une ville' 
@@ -39,7 +39,7 @@ class Search extends React.Component {
                     />
                 </Item>
                 <View>
-                    <Button title={''} style={{ borderRadius: 7, height:50, backgroundColor: '#455A64' }} onPress={() => this.submit() }>
+                    <Button title={''} style={{ borderRadius: 7, height:50, backgroundColor: '#0A48A5' }} onPress={() => this.submit() }>
                         <Text style={{ margin: 30, color: 'white', fontSize: 25 }} >Rechercher</Text>
                     </Button>
                 </View>
@@ -67,19 +67,3 @@ const style = StyleSheet.create({
         color: '#FFF',
     }
 });
-
-const navigationOptions = {
-    headerStyle: style.header,
-    headerTitleStyle: style.headerTitle,
-};
-
-export default StackNavigator({
-    Search: {
-        screen: Search,
-        navigationOptions
-    },
-    Result: {
-        screen: List,
-        navigationOptions
-    },
-})

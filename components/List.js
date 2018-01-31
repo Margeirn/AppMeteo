@@ -22,6 +22,8 @@ export default class List extends React.Component {
         }
     }
 
+    //http://api.openweathermap.org/data/2.5/weather?lat=50.345912&lon=3.097388&appid=936b1aed9a541e3446cafb8be2c70e62
+
     fetchWeather () {
         axios.get(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${this.state.city}&units=metric&cnt=16&appid=936b1aed9a541e3446cafb8be2c70e62`)
         .then((reponse) => {
@@ -56,6 +58,8 @@ export default class List extends React.Component {
 const style = StyleSheet.create({
     view: {
         margin: 30,
+        flex: 1,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
     },
