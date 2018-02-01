@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, StatusBar } from 'react-native'
 import { View, Container, Text, Header, Left, Right, Body } from 'native-base'
 import Search from "./Search";
 import List from "./List";
@@ -17,6 +17,7 @@ class Home extends React.Component {
     render() {
         return (
             <Container style={{ backgroundColor: '#d6dee1' }} >
+                <StatusBar barStyle = "dark-content" hidden = {false}/>
                 <Header style={{ backgroundColor: '#0A48A5'}}>
                     <Left style={{ flex: 1}}/>
                     <Body style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
